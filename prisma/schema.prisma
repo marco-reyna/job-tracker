@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ApplicationStatus {
+  APPLIED
+  INTERVIEWING
+  REJECTED
+  OFFER
+}
+
+model Application {
+  id        String            @id @default(uuid())
+  company   String
+  role      String
+  status    ApplicationStatus @default(APPLIED)
+  salary    String?
+  url       String?
+  notes     String?
+  appliedAt DateTime
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+}
