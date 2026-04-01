@@ -31,7 +31,7 @@ export default async function HomePage({ searchParams }: PageProps) {
   return (
     <main className="max-w-5xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-heading text-black">Job Applications</h1>
+        <h1 className="text-5xl font-black text-black">Job Applications</h1>
         <Link href="/applications/new">
           <Button variant="primary">+ Add Application</Button>
         </Link>

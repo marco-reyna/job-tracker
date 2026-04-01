@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
-import { Lilita_One } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
-
-const lilitaOne = Lilita_One({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-heading",
-});
 
 export const metadata: Metadata = {
   title: "Job Tracker",
@@ -21,10 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${lilitaOne.variable} font-heading antialiased bg-dust text-black`}>
+      <body className="antialiased bg-dust text-black">
         <nav className="border-b border-dust bg-white">
           <div className="max-w-5xl mx-auto px-4 h-14 flex items-center">
-            <Link href="/" className="text-xl text-teal hover:text-tangerine transition-colors">
+            <Link href="/" className="text-xl font-black text-teal hover:text-tangerine transition-colors">
               Job Tracker
             </Link>
           </div>

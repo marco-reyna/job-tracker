@@ -5,7 +5,7 @@ export const metadata = { title: "New Application — Job Tracker" };
 export default function NewApplicationPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-heading text-black mb-6">New Application</h1>
+      <h1 className="text-2xl font-black text-black mb-6">New Application</h1>
       <ApplicationForm />
     </main>
   );

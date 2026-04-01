@@ -17,7 +17,7 @@ const config: Config = {
         dust: "#d7d9ce",
       },
       fontFamily: {
-        heading: ["var(--font-heading)", "serif"],
+        satoshi: ["Satoshi", "sans-serif"],
       },
     },
   },

@@ -13,7 +13,7 @@ export default async function LoginPage({ searchParams }: PageProps) {
   return (
     <main className="min-h-screen flex items-center justify-center bg-dust px-4">
       <div className="bg-white rounded-xl shadow-md p-8 w-full max-w-sm">
-        <h1 className="font-heading text-2xl text-teal mb-2">Job Tracker</h1>
+        <h1 className="font-black text-2xl text-teal mb-2">Job Tracker</h1>
         <p className="text-black/60 text-sm mb-6">Enter your password to continue.</p>
 
         <form action={login} className="flex flex-col gap-4">
