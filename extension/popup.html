@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Tracker</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 360px;
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+      background: #d7d9ce;
+      color: #040404;
+    }
+    header {
+      background: #15616d;
+      color: white;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header h1 { font-size: 16px; font-weight: 700; letter-spacing: 0.5px; }
+    header button {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      opacity: 0.8;
+    }
+    header button:hover { opacity: 1; }
+    .view { display: none; padding: 16px; }
+    .view.active { display: block; }
+
+    /* Settings */
+    .settings-desc { color: #040404; opacity: 0.6; font-size: 12px; margin-bottom: 14px; line-height: 1.5; }
+    .field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+    .field label { font-size: 12px; font-weight: 600; color: #040404; }
+    .field input, .field select, .field textarea {
+      border: 1px solid #b0b2a8;
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-size: 13px;
+      background: white;
+      color: #040404;
+      outline: none;
+      width: 100%;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: #15616d;
+      box-shadow: 0 0 0 2px rgba(21,97,109,0.15);
+    }
+    .field textarea { resize: vertical; min-height: 60px; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.15s;
+      width: 100%;
+    }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-primary { background: #15616d; color: white; }
+    .btn-primary:hover:not(:disabled) { opacity: 0.9; }
+    .btn-secondary { background: white; color: #040404; border: 1px solid #d7d9ce; margin-top: 8px; }
+    .btn-secondary:hover:not(:disabled) { background: #d7d9ce; }
+
+    /* Capture view */
+    .capture-area { text-align: center; padding: 8px 0 16px; }
+    .capture-area p { font-size: 12px; color: #040404; opacity: 0.6; margin-bottom: 12px; line-height: 1.5; }
+    .status-msg { font-size: 12px; margin-top: 10px; padding: 8px 10px; border-radius: 6px; display: none; }
+    .status-msg.error { background: #ffe0e5; color: #cc0029; display: block; }
+    .status-msg.success { background: #d4edda; color: #155724; display: block; }
+    .status-msg.loading { background: #e8f4f5; color: #15616d; display: block; }
+    .divider { border: none; border-top: 1px solid #b0b2a8; margin: 12px 0; }
+    .form-section { display: none; }
+    .form-section.active { display: block; }
+    .form-actions { display: flex; flex-direction: column; gap: 0; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Job Tracker</h1>
+    <button id="settings-toggle" title="Settings">⚙</button>
+  </header>
+
+  <!-- Settings view -->
+  <div id="settings-view" class="view">
+    <p class="settings-desc">Enter your app URL and auth secret to connect the extension.</p>
+    <div class="field">
+      <label for="app-url">App URL</label>
+      <input type="url" id="app-url" placeholder="https://your-app.vercel.app" />
+    </div>
+    <div class="field">
+      <label for="auth-secret">Auth Secret</label>
+      <input type="password" id="auth-secret" placeholder="Your AUTH_SECRET value" />
+    </div>
+    <button class="btn btn-primary" id="save-settings">Save Settings</button>
+    <div id="settings-msg" class="status-msg"></div>
+  </div>
+
+  <!-- Main view -->
+  <div id="main-view" class="view">
+    <div class="capture-area">
+      <p>Click below to extract job details from the current page using AI.</p>
+      <button class="btn btn-primary" id="capture-btn">Capture This Job</button>
+      <div id="capture-msg" class="status-msg"></div>
+    </div>
+
+    <div id="form-section" class="form-section">
+      <hr class="divider" />
+      <div class="field">
+        <label for="company">Company *</label>
+        <input type="text" id="company" placeholder="e.g. Acme Corp" />
+      </div>
+      <div class="field">
+        <label for="role">Role *</label>
+        <input type="text" id="role" placeholder="e.g. Senior Engineer" />
+      </div>
+      <div class="field">
+        <label for="status">Status</label>
+        <select id="status">
+          <option value="APPLIED">Applied</option>
+          <option value="INTERVIEWING">Interviewing</option>
+          <option value="OFFER">Offer</option>
+          <option value="REJECTED">Rejected</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="applied-at">Applied Date</label>
+        <input type="date" id="applied-at" />
+      </div>
+      <div class="field">
+        <label for="salary">Salary</label>
+        <input type="text" id="salary" placeholder="e.g. $120,000" />
+      </div>
+      <div class="field">
+        <label for="url">Job URL</label>
+        <input type="url" id="url" placeholder="https://..." />
+      </div>
+      <div class="field">
+        <label for="notes">Notes</label>
+        <textarea id="notes" placeholder="Key requirements, benefits..."></textarea>
+      </div>
+      <div id="save-msg" class="status-msg"></div>
+      <div class="form-actions">
+        <button class="btn btn-primary" id="save-btn">Save to Tracker</button>
+        <button class="btn btn-secondary" id="reset-btn">Clear & Recapture</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
