@@ -3,9 +3,9 @@
 import React from "react";
 
 const variantClasses = {
-  primary: "bg-blue-600 hover:bg-blue-700 text-white",
-  secondary: "bg-gray-100 hover:bg-gray-200 text-gray-800",
-  danger: "bg-red-600 hover:bg-red-700 text-white",
+  primary: "bg-teal hover:bg-teal/90 text-white",
+  secondary: "bg-white hover:bg-dust text-black border border-dust",
+  danger: "bg-strawberry hover:bg-strawberry/90 text-white",
 };
 
 const sizeClasses = {

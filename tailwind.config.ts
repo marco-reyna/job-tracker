@@ -10,8 +10,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        teal: "#15616d",
+        tangerine: "#ff7d00",
+        strawberry: "#ff0035",
+        black: "#040404",
+        dust: "#d7d9ce",
+      },
+      fontFamily: {
+        heading: ["var(--font-heading)", "serif"],
+        body: ["var(--font-body)", "serif"],
       },
     },
   },

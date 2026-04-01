@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Lilita_One, Alice } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const lilitaOne = Lilita_One({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-heading",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const alice = Alice({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-body",
 });
 
 export const metadata: Metadata = {
@@ -26,12 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <nav className="border-b border-gray-200 bg-white">
+      <body className={`${lilitaOne.variable} ${alice.variable} font-body antialiased bg-dust text-black`}>
+        <nav className="border-b border-dust-grey bg-white">
           <div className="max-w-5xl mx-auto px-4 h-14 flex items-center">
-            <Link href="/" className="font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+            <Link href="/" className="font-heading text-xl text-teal hover:text-tangerine transition-colors">
               Job Tracker
             </Link>
           </div>

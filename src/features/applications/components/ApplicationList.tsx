@@ -8,7 +8,7 @@ interface Props {
 export function ApplicationList({ applications }: Props) {
   if (applications.length === 0) {
     return (
-      <div className="text-center py-16 text-gray-400">
+      <div className="text-center py-16 text-black/40">
         <p className="text-lg">No applications yet.</p>
         <p className="text-sm mt-1">Add your first one to get started.</p>
       </div>
@@ -16,9 +16,9 @@ export function ApplicationList({ applications }: Props) {
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-gray-200">
+    <div className="overflow-x-auto rounded-lg border border-dust">
       <table className="w-full text-sm">
-        <thead className="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide">
+        <thead className="bg-teal text-white text-xs uppercase tracking-wide">
           <tr>
             <th className="px-4 py-3 text-left">Company</th>
             <th className="px-4 py-3 text-left">Role</th>
@@ -28,7 +28,7 @@ export function ApplicationList({ applications }: Props) {
             <th className="px-4 py-3 text-left">Actions</th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-100">
+        <tbody className="bg-white divide-y divide-dust">
           {applications.map((app) => (
             <ApplicationCard key={app.id} application={app} />
           ))}
