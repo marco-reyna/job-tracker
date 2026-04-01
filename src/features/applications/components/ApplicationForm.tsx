@@ -8,7 +8,7 @@ import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { createApplication, updateApplication } from "../actions";
 import type { Application } from "../types";
-import { ApplicationStatus } from "@/generated/prisma/client";
+import { ApplicationStatus } from "@/generated/prisma/enums";
 
 const STATUS_OPTIONS = [
   { value: ApplicationStatus.APPLIED, label: "Applied" },
