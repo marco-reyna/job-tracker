@@ -3,9 +3,13 @@
   "name": "Job Tracker",
   "version": "1.0",
   "description": "Capture job applications with AI in one click",
+  "icons": {
+    "128": "icon.png"
+  },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Job Tracker"
+    "default_title": "Job Tracker",
+    "default_icon": { "128": "icon.png" }
   },
   "permissions": ["activeTab", "storage", "scripting"],
   "host_permissions": ["<all_urls>"]
