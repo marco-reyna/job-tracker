@@ -15,7 +15,20 @@ export function ApplicationCard({ application }: Props) {
 
   return (
     <tr className="hover:bg-dust/40 transition-colors">
-      <td className="px-4 py-3 font-medium text-black">{application.company}</td>
+      <td className="px-4 py-3 font-medium text-black">
+        {application.url ? (
+          <a
+            href={application.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-teal hover:text-tangerine hover:underline transition-colors"
+          >
+            {application.company}
+          </a>
+        ) : (
+          application.company
+        )}
+      </td>
       <td className="px-4 py-3 text-black/70">{application.role}</td>
       <td className="px-4 py-3">
         <ApplicationStatusBadge status={application.status} />
