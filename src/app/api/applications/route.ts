@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import { verifyApiAuth } from "@/lib/apiAuth";
+import { resolveApiUser } from "@/lib/apiAuth";
 import { prisma } from "@/lib/prisma";
 import { ApplicationStatus } from "@/generated/prisma/client";
 
 const VALID_STATUSES = Object.values(ApplicationStatus);
 
 export async function POST(request: NextRequest) {
-  if (!verifyApiAuth(request)) {
+  const userId = await resolveApiUser(request);
+  if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -30,6 +31,7 @@ export async function POST(request: NextRequest) {
       url: url ? String(url).trim() : null,
       notes: notes ? String(notes).trim() : null,
       appliedAt: appliedAt ? new Date(appliedAt) : new Date(),
+      userId,
     },
   });
 

@@ -1,5 +1,6 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { ApplicationStatus } from "@/generated/prisma/client";
@@ -9,12 +10,20 @@ type ActionResult<T> =
   | { success: true; data: T }
   | { success: false; error: string };
 
+async function getUserId(): Promise<string | null> {
+  const cookieStore = await cookies();
+  return cookieStore.get("auth")?.value ?? null;
+}
+
 export async function getApplications(
   status?: ApplicationStatus
 ): Promise<ActionResult<Application[]>> {
   try {
+    const userId = await getUserId();
+    if (!userId) return { success: false, error: "Unauthorized" };
+
     const applications = await prisma.application.findMany({
-      where: status ? { status } : undefined,
+      where: { userId, ...(status ? { status } : {}) },
       orderBy: { appliedAt: "desc" },
     });
     return { success: true, data: applications };
@@ -27,7 +36,10 @@ export async function getApplication(
   id: string
 ): Promise<ActionResult<Application>> {
   try {
-    const application = await prisma.application.findUnique({ where: { id } });
+    const userId = await getUserId();
+    if (!userId) return { success: false, error: "Unauthorized" };
+
+    const application = await prisma.application.findUnique({ where: { id, userId } });
     if (!application) return { success: false, error: "Not found" };
     return { success: true, data: application };
   } catch {
@@ -39,10 +51,14 @@ export async function createApplication(
   input: CreateApplicationInput
 ): Promise<ActionResult<Application>> {
   try {
+    const userId = await getUserId();
+    if (!userId) return { success: false, error: "Unauthorized" };
+
     const application = await prisma.application.create({
       data: {
         ...input,
         appliedAt: new Date(input.appliedAt),
+        userId,
       },
     });
     revalidatePath("/");
@@ -56,9 +72,12 @@ export async function updateApplication(
   input: UpdateApplicationInput
 ): Promise<ActionResult<Application>> {
   try {
+    const userId = await getUserId();
+    if (!userId) return { success: false, error: "Unauthorized" };
+
     const { id, ...data } = input;
     const application = await prisma.application.update({
-      where: { id },
+      where: { id, userId },
       data: {
         ...data,
         ...(data.appliedAt ? { appliedAt: new Date(data.appliedAt) } : {}),
@@ -76,7 +95,10 @@ export async function deleteApplication(
   id: string
 ): Promise<ActionResult<{ id: string }>> {
   try {
-    await prisma.application.delete({ where: { id } });
+    const userId = await getUserId();
+    if (!userId) return { success: false, error: "Unauthorized" };
+
+    await prisma.application.delete({ where: { id, userId } });
     revalidatePath("/");
     return { success: true, data: { id } };
   } catch {

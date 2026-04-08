@@ -11,7 +11,7 @@ export default async function LoginPage({ searchParams }: PageProps) {
   const params = await searchParams;
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-surface px-4">
+    <main className="min-h-screen flex items-start justify-center bg-surface px-4 pt-24">
       <div className="bg-fg rounded-xl shadow-md p-8 w-full max-w-sm">
         <h1 className="font-black text-3xl text-primary mb-2">Job Tracker</h1>
         <p className="text-ink/60 text-base mb-6">Enter your password to continue.</p>

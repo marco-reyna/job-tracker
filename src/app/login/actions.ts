@@ -2,16 +2,19 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { prisma } from "@/lib/prisma";
 
 export async function login(formData: FormData) {
-  const secret = formData.get("secret") as string;
+  const key = formData.get("secret") as string;
 
-  if (secret !== process.env.AUTH_SECRET) {
+  const user = await prisma.user.findUnique({ where: { key } });
+
+  if (!user) {
     redirect("/login?error=Invalid+password");
   }
 
   const cookieStore = await cookies();
-  cookieStore.set("auth", process.env.AUTH_SECRET!, {
+  cookieStore.set("auth", user.id, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
