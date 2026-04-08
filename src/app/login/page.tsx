@@ -11,14 +11,14 @@ export default async function LoginPage({ searchParams }: PageProps) {
   const params = await searchParams;
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-dust px-4">
-      <div className="bg-white rounded-xl shadow-md p-8 w-full max-w-sm">
-        <h1 className="font-black text-2xl text-teal mb-2">Job Tracker</h1>
-        <p className="text-black/60 text-sm mb-6">Enter your password to continue.</p>
+    <main className="min-h-screen flex items-center justify-center bg-surface px-4">
+      <div className="bg-fg rounded-xl shadow-md p-8 w-full max-w-sm">
+        <h1 className="font-black text-3xl text-primary mb-2">Job Tracker</h1>
+        <p className="text-ink/60 text-base mb-6">Enter your password to continue.</p>
 
         <form action={login} className="flex flex-col gap-4">
           <div className="flex flex-col gap-1">
-            <label htmlFor="secret" className="text-sm font-medium text-black">
+            <label htmlFor="secret" className="text-base font-medium text-ink">
               Password
             </label>
             <input
@@ -27,12 +27,12 @@ export default async function LoginPage({ searchParams }: PageProps) {
               type="password"
               required
               autoFocus
-              className="border border-dust rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal"
+              className="bg-surface border border-accent rounded-md px-3 py-2 text-base text-ink focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
           {params.error && (
-            <p className="text-sm text-strawberry">{params.error}</p>
+            <p className="text-base font-medium text-ink">{params.error}</p>
           )}
 
           <Button type="submit" variant="primary" className="w-full">

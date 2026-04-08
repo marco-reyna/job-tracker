@@ -14,14 +14,14 @@ export function ApplicationCard({ application }: Props) {
   });
 
   return (
-    <tr className="hover:bg-dust/40 transition-colors">
-      <td className="px-4 py-3 font-medium text-black">
+    <tr className="hover:bg-accent transition-colors">
+      <td className="px-4 py-3 font-medium text-ink">
         {application.url ? (
           <a
             href={application.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-teal hover:text-tangerine hover:underline transition-colors"
+            className="text-primary hover:text-ink hover:underline transition-colors"
           >
             {application.company}
           </a>
@@ -29,16 +29,16 @@ export function ApplicationCard({ application }: Props) {
           application.company
         )}
       </td>
-      <td className="px-4 py-3 text-black/70">{application.role}</td>
+      <td className="px-4 py-3 text-ink/70">{application.role}</td>
       <td className="px-4 py-3">
         <ApplicationStatusBadge status={application.status} />
       </td>
-      <td className="px-4 py-3 text-black/50 text-sm">{appliedDate}</td>
-      <td className="px-4 py-3 text-black/50 text-sm">{application.salary ?? "—"}</td>
+      <td className="px-4 py-3 text-ink/50">{appliedDate}</td>
+      <td className="px-4 py-3 text-ink/50">{application.salary ?? "—"}</td>
       <td className="px-4 py-3">
         <Link
           href={`/applications/${application.id}`}
-          className="text-teal hover:text-tangerine hover:underline text-sm transition-colors"
+          className="text-primary hover:text-ink hover:underline transition-colors"
         >
           Edit
         </Link>

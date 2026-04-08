@@ -10,11 +10,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        teal: "#15616d",
-        tangerine: "#ff7d00",
-        strawberry: "#ff0035",
-        black: "#040404",
-        dust: "#d7d9ce",
+        primary:        "#fb923c",
+        accent:         "#303033",
+        error:          "#f87171",
+        ink:            "#fafafa",
+        surface:        "#18181b",
+        fg:             "#27272a",
+        "badge-green":  "#4ade80",
+        "badge-blue":   "#38bdf8",
+        "badge-purple": "#e879f9",
       },
       fontFamily: {
         satoshi: ["Satoshi", "sans-serif"],

@@ -137,7 +137,7 @@ export function ApplicationForm({ application }: Props) {
         onChange={(e) => set("notes", e.target.value)}
         placeholder="Any notes about this application..."
       />
-      {serverError && <p className="text-sm text-red-600">{serverError}</p>}
+      {serverError && <p className="text-base font-medium text-ink">{serverError}</p>}
       <div className="flex gap-2 pt-2">
         <Button type="submit" disabled={isPending}>
           {isPending ? "Saving..." : application ? "Save Changes" : "Add Application"}

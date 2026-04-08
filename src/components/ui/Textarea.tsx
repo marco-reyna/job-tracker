@@ -9,17 +9,17 @@ export function Textarea({ label, error, id, className = "", rows = 4, ...props 
   return (
     <div className="flex flex-col gap-1">
       {label && (
-        <label htmlFor={id} className="text-sm font-medium text-black">
+        <label htmlFor={id} className="text-base font-medium text-ink">
           {label}
         </label>
       )}
       <textarea
         id={id}
         rows={rows}
-        className={`border rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-teal resize-y ${error ? "border-red-500" : "border-gray-300"} ${className}`}
+        className={`bg-surface text-ink border rounded-md px-3 py-2 w-full text-base focus:outline-none focus:ring-2 focus:ring-primary resize-y ${error ? "border-error" : "border-accent"} ${className}`}
         {...props}
       />
-      {error && <p className="text-xs text-red-600">{error}</p>}
+      {error && <p className="text-sm font-medium text-ink">{error}</p>}
     </div>
   );
 }

@@ -24,14 +24,14 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
 
   return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-ink/50"
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-lg shadow-xl w-full max-w-md mx-4 p-6"
+        className="bg-fg border border-accent rounded-lg shadow-xl w-full max-w-md mx-4 p-6"
         onClick={(e) => e.stopPropagation()}
       >
-        {title && <h2 className="text-lg font-semibold mb-4">{title}</h2>}
+        {title && <h2 className="text-xl font-semibold mb-4">{title}</h2>}
         {children}
       </div>
     </div>,

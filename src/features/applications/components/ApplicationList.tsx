@@ -8,17 +8,17 @@ interface Props {
 export function ApplicationList({ applications }: Props) {
   if (applications.length === 0) {
     return (
-      <div className="text-center py-16 text-black/40">
-        <p className="text-lg">No applications yet.</p>
+      <div className="text-center py-16 text-ink/40">
+        <p className="text-xl">No applications yet.</p>
         <p className="text-sm mt-1">Add your first one to get started.</p>
       </div>
     );
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-dust">
-      <table className="w-full text-sm">
-        <thead className="bg-teal text-white text-xs uppercase tracking-wide">
+    <div className="overflow-x-auto rounded-lg border border-accent">
+      <table className="w-full text-base">
+        <thead className="bg-fg text-primary text-sm uppercase tracking-wide">
           <tr>
             <th className="px-4 py-3 text-left">Company</th>
             <th className="px-4 py-3 text-left">Role</th>
@@ -28,7 +28,7 @@ export function ApplicationList({ applications }: Props) {
             <th className="px-4 py-3 text-left">Actions</th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-dust">
+        <tbody className="bg-fg divide-y divide-accent">
           {applications.map((app) => (
             <ApplicationCard key={app.id} application={app} />
           ))}

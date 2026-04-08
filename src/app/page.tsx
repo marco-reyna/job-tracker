@@ -31,7 +31,7 @@ export default async function HomePage({ searchParams }: PageProps) {
   return (
     <main className="max-w-5xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-5xl font-black text-black">Job Applications</h1>
+        <h1 className="text-6xl font-black text-ink">Job Applications</h1>
         <Link href="/applications/new">
           <Button variant="primary">+ Add Application</Button>
         </Link>
@@ -45,10 +45,10 @@ export default async function HomePage({ searchParams }: PageProps) {
             <Link
               key={tab.label}
               href={href}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+              className={`px-3 py-1 rounded-full text-base font-medium transition-colors ${
                 isActive
-                  ? "bg-teal text-white"
-                  : "bg-white text-black hover:bg-dust"
+                  ? "bg-primary text-ink"
+                  : "bg-fg text-ink hover:bg-accent"
               }`}
             >
               {tab.label}

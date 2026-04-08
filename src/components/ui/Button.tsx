@@ -3,14 +3,14 @@
 import React from "react";
 
 const variantClasses = {
-  primary: "bg-teal hover:bg-teal/90 text-white",
-  secondary: "bg-white hover:bg-dust text-black border border-dust",
-  danger: "bg-strawberry hover:bg-strawberry/90 text-white",
+  primary: "bg-primary hover:bg-primary/90 text-ink",
+  secondary: "bg-fg hover:bg-accent text-ink border border-accent",
+  danger: "bg-error hover:bg-error/90 text-ink",
 };
 
 const sizeClasses = {
-  sm: "px-3 py-1.5 text-sm",
-  md: "px-4 py-2 text-sm",
+  sm: "px-3 py-1.5 text-base",
+  md: "px-4 py-2 text-base",
 };
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

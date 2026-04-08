@@ -14,10 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased bg-dust text-black">
-        <nav className="border-b border-dust bg-white">
+      <body className="antialiased bg-surface text-ink">
+        <nav className="border-b border-accent bg-surface">
           <div className="max-w-5xl mx-auto px-4 h-14 flex items-center">
-            <Link href="/" className="text-xl font-black text-teal hover:text-tangerine transition-colors">
+            <Link href="/" className="text-2xl font-black text-primary hover:text-ink transition-colors">
               Job Tracker
             </Link>
           </div>

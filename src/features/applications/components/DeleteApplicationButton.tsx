@@ -36,10 +36,10 @@ export function DeleteApplicationButton({ id }: Props) {
         Delete
       </Button>
       <Modal open={open} onClose={() => setOpen(false)} title="Delete Application">
-        <p className="text-gray-600 mb-4">
+        <p className="text-base text-ink/60 mb-4">
           Are you sure you want to delete this application? This cannot be undone.
         </p>
-        {error && <p className="text-sm text-red-600 mb-3">{error}</p>}
+        {error && <p className="text-base font-medium text-ink mb-3">{error}</p>}
         <div className="flex gap-2 justify-end">
           <Button variant="secondary" onClick={() => setOpen(false)} disabled={isPending}>
             Cancel

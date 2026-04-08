@@ -1,11 +1,11 @@
 import { Badge } from "@/components/ui/Badge";
 import { ApplicationStatus } from "@/generated/prisma/client";
 
-const statusConfig: Record<ApplicationStatus, { variant: "blue" | "yellow" | "red" | "green"; label: string }> = {
-  APPLIED: { variant: "blue", label: "Applied" },
-  INTERVIEWING: { variant: "yellow", label: "Interviewing" },
-  REJECTED: { variant: "red", label: "Rejected" },
-  OFFER: { variant: "green", label: "Offer" },
+const statusConfig: Record<ApplicationStatus, { variant: "accent" | "neutral" | "error" | "primary"; label: string }> = {
+  APPLIED:      { variant: "accent",  label: "Applied" },
+  INTERVIEWING: { variant: "neutral", label: "Interviewing" },
+  REJECTED:     { variant: "error",   label: "Rejected" },
+  OFFER:        { variant: "primary", label: "Offer" },
 };
 
 interface Props {
