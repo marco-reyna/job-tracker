@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
-import { verifyApiAuth } from "@/lib/apiAuth";
+import { resolveApiUser } from "@/lib/apiAuth";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 export async function POST(request: NextRequest) {
-  if (!verifyApiAuth(request)) {
+  const userId = await resolveApiUser(request);
+  if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
