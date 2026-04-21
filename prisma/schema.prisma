@@ -11,6 +11,7 @@ datasource db {
 }
 
 enum ApplicationStatus {
+  SAVED
   APPLIED
   INTERVIEWING
   REJECTED

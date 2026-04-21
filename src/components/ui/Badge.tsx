@@ -5,6 +5,7 @@ const variantClasses = {
   neutral: "bg-badge-green/20 text-badge-green",
   error:   "bg-error/20 text-error",
   primary: "bg-badge-purple/20 text-badge-purple",
+  warning: "bg-badge-yellow/20 text-badge-yellow",
 };
 
 interface BadgeProps {

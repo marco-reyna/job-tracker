@@ -75,6 +75,8 @@
     .btn-primary:hover:not(:disabled) { opacity: 0.9; }
     .btn-secondary { background: #27272a; color: #fafafa; border: 1px solid #303033; margin-top: 8px; }
     .btn-secondary:hover:not(:disabled) { background: #303033; }
+    .btn-outline { background: transparent; color: #fb923c; border: 1px solid #fb923c; margin-top: 8px; }
+    .btn-outline:hover:not(:disabled) { background: rgba(251,146,60,0.1); }
 
     /* Capture view */
     .capture-area { text-align: center; padding: 8px 0 16px; }
@@ -129,16 +131,7 @@
         <input type="text" id="role" placeholder="e.g. Senior Engineer" />
       </div>
       <div class="field">
-        <label for="status">Status</label>
-        <select id="status">
-          <option value="APPLIED">Applied</option>
-          <option value="INTERVIEWING">Interviewing</option>
-          <option value="OFFER">Offer</option>
-          <option value="REJECTED">Rejected</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="applied-at">Applied Date</label>
+        <label for="applied-at">Date</label>
         <input type="date" id="applied-at" />
       </div>
       <div class="field">
@@ -155,8 +148,9 @@
       </div>
       <div id="save-msg" class="status-msg"></div>
       <div class="form-actions">
-        <button class="btn btn-primary" id="save-btn">Save to Tracker</button>
-        <button class="btn btn-secondary" id="reset-btn">Clear & Recapture</button>
+        <button class="btn btn-primary" id="save-applied-btn">Save Application</button>
+        <button class="btn btn-outline" id="save-later-btn">Save for Later</button>
+        <button class="btn btn-secondary" id="reset-btn">Clear &amp; Recapture</button>
       </div>
     </div>
   </div>

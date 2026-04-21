@@ -11,6 +11,7 @@ import type { Application } from "../types";
 import { ApplicationStatus } from "@/generated/prisma/enums";
 
 const STATUS_OPTIONS = [
+  { value: ApplicationStatus.SAVED, label: "Saved" },
   { value: ApplicationStatus.APPLIED, label: "Applied" },
   { value: ApplicationStatus.INTERVIEWING, label: "Interviewing" },
   { value: ApplicationStatus.REJECTED, label: "Rejected" },

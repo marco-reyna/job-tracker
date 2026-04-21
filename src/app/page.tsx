@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getApplications } from "@/features/applications/actions";
-import { ApplicationList } from "@/features/applications/components/ApplicationList";
+import { ApplicationsView } from "@/features/applications/components/ApplicationsView";
 import { Button } from "@/components/ui/Button";
 import { ApplicationStatus } from "@/generated/prisma/client";
 
@@ -8,6 +8,7 @@ const VALID_STATUSES = Object.values(ApplicationStatus);
 
 const STATUS_TABS = [
   { label: "All", value: undefined },
+  { label: "Saved", value: ApplicationStatus.SAVED },
   { label: "Applied", value: ApplicationStatus.APPLIED },
   { label: "Interviewing", value: ApplicationStatus.INTERVIEWING },
   { label: "Offer", value: ApplicationStatus.OFFER },
@@ -57,7 +58,7 @@ export default async function HomePage({ searchParams }: PageProps) {
         })}
       </div>
 
-      <ApplicationList applications={applications} />
+      <ApplicationsView applications={applications} />
     </main>
   );
 }

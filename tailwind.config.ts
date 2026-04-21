@@ -19,6 +19,7 @@ const config: Config = {
         "badge-green":  "#4ade80",
         "badge-blue":   "#38bdf8",
         "badge-purple": "#e879f9",
+        "badge-yellow": "#facc15",
       },
       fontFamily: {
         satoshi: ["Satoshi", "sans-serif"],

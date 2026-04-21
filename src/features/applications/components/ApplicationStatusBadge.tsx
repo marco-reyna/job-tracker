@@ -1,7 +1,8 @@
 import { Badge } from "@/components/ui/Badge";
 import { ApplicationStatus } from "@/generated/prisma/client";
 
-const statusConfig: Record<ApplicationStatus, { variant: "accent" | "neutral" | "error" | "primary"; label: string }> = {
+const statusConfig: Record<ApplicationStatus, { variant: "accent" | "neutral" | "error" | "primary" | "warning"; label: string }> = {
+  SAVED:        { variant: "warning", label: "Saved" },
   APPLIED:      { variant: "accent",  label: "Applied" },
   INTERVIEWING: { variant: "neutral", label: "Interviewing" },
   REJECTED:     { variant: "error",   label: "Rejected" },

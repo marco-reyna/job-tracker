@@ -96,7 +96,6 @@ async function captureJob() {
   $("url").value = extracted.url || tab.url || "";
   $("notes").value = extracted.notes ?? "";
   $("applied-at").value = new Date().toISOString().split("T")[0];
-  $("status").value = "APPLIED";
 
   clearMsg("capture-msg");
   $("form-section").classList.add("active");
@@ -104,7 +103,7 @@ async function captureJob() {
 }
 
 // --- Save flow ---
-async function saveJob() {
+async function saveJob(status) {
   const { appUrl, authSecret } = await loadSettings();
   const company = $("company").value.trim();
   const role = $("role").value.trim();
@@ -114,7 +113,7 @@ async function saveJob() {
     return;
   }
 
-  const saveBtn = $("save-btn");
+  const saveBtn = status === "SAVED" ? $("save-later-btn") : $("save-applied-btn");
   saveBtn.disabled = true;
   showMsg("save-msg", "Saving...", "loading");
 
@@ -128,7 +127,7 @@ async function saveJob() {
       body: JSON.stringify({
         company,
         role,
-        status: $("status").value,
+        status,
         salary: $("salary").value.trim() || null,
         url: $("url").value.trim() || null,
         notes: $("notes").value.trim() || null,
@@ -166,7 +165,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   $("save-settings").addEventListener("click", saveSettings);
   $("capture-btn").addEventListener("click", captureJob);
-  $("save-btn").addEventListener("click", saveJob);
+  $("save-applied-btn").addEventListener("click", () => saveJob("APPLIED"));
+  $("save-later-btn").addEventListener("click", () => saveJob("SAVED"));
   $("reset-btn").addEventListener("click", () => {
     $("form-section").classList.remove("active");
     clearMsg("capture-msg");
